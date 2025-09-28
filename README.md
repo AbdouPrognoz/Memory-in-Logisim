@@ -1,62 +1,42 @@
-# Memory-in-Logisim
-4 bit Memory in logisim
+# Memory in Logisim
 
+A Logisim implementation of a 4-bit memory circuit using D flip-flops, decoder, multiplexer, and splitter.
 
-**Steps:**
+## Steps
 
---> A matrix of d flip flop is made which has dimensions 32X5 which means there are 32 rows
-and in each row there are 4 d flip flops.
+- A matrix of D flip-flops is made, with dimensions **32×5**, meaning there are 32 rows and in each row there are 4 D flip-flops.
+- A **5×32 decoder** is used, with a 5-bit input given to the decoder as the address to access the row.
+- The decoder's 32 output lines are connected to the flip-flops in every row as the **enable** lines.
+- A 4-bit input is taken and connected bitwise to flip-flops in every row. For example, the first bit of input connects to the input of every flip-flop in the first column.
+- There is a **clock input** in the circuit.
+- For output, a **32×5 multiplexer** is used.
+- Each row's bits are combined using a **splitter** and connected to the multiplexer.
+- The 5-bit input used for the decoder is also used for the selection lines of the multiplexer.
+- Output is shown from the output of the multiplexer.
+- A **reset button** is provided to reset all flip-flops in the circuit.
 
---> A 5X32 decoder is used. A 5 bit input is given to the decoder as the address to access the row
+## Working Example
 
---> Decoder’s 32 output lines are connected to each flip flops in every rows which will work as
-enable.
+To store `0111` at the address `10110`:
 
---> 4 bit input is taken and that input is connected bitwise with flip flops in every rows. Example,
-first bit of input is connected to the input of every flip flops in first column.
+1. Give `0111` to the data input.
+2. Set `10110` as the address.
+3. This input is provided to every flip-flop in every row.
+4. The corresponding enable line (23rd row in this case) is activated via the decoder.
+5. Upon clock pulse, `0111` is stored in the flip-flops of the 23rd row.
+6. The address `10110` is also used as the selection input in the multiplexer, passing the output from the 23rd row to the output.
+7. To read data from any row, provide the row's address to display stored data.
+8. The reset button clears all flip-flops in the circuit.
 
---> There is a clock input in circuit.
+## Inputs
 
---> For, output a multiplexer is used which has dimensions 32X5.
+- **4-bit input:** Data to store.
+- **5-bit input:** Address for storing 4-bit data.
 
---> In each row, every bit are combined using a splitter and connected to multiplexer.
+## Outputs
 
---> As the input for selection line the 5 bit input which was given to decoder will be used.
+- **4-bit output:** Data from the row corresponding to the given address.
 
---> Output will be shown from the output of multiplexer.
+## Circuit File Format
 
---> There is also a reset button.
-
-
-**Working:**
-
---> Working can be explained easily by using an example like if we want to store “0111” on the
-address “10110”.
-
---> For that we have to give “0111” to input and “10110” to address, this input will then be
-provided to every flip flops in every rows.
-
---> Then enable is changed to one which will pass through decoder and that 23rd row will activate
-and when clock pulse is given input “0111” will be stored in the flip flops of 23rd row.
-
---> Address “10110” is also provided as selection input in multiplexer so, flip flops from 23rd row
-will pass output to multiplexer and that will be shown in output.
-
---> To show any data stored in any row we just need to give address of that row and that stored
-data on that row will be displayed on output.
-
---> Reset button will reset all the flip flops of circuit
-
-
-**Input:**
-
---> 4bit input: 4 bit input to store.
-
---> 5bit input: 5 bit input as an address to store 4bit data
-
-**Output:**
-
---> 4bit Output: 4 bit output of the data of the row of given address.
-
-
-the .circ extension is used by ligisim to store the circuits in XML format (similar to HTML).
+The `.circ` extension is used by Logisim to store the circuits in XML format, similar to HTML.
