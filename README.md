@@ -57,3 +57,6 @@ data on that row will be displayed on output.
 **Output:**
 
 --> 4bit Output: 4 bit output of the data of the row of given address.
+
+
+the .circ extension is used by ligisim to store the circuits in XML format (similar to HTML).
